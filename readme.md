@@ -1,6 +1,6 @@
 # Análise de Dados no PGD Petrvs
 
-** dm_petrvs
+**dm_petrvs**
 
 O dm_petrvs é uma ferramenta de consulta à base de dados do PGD Petrvs com a finalidade de fornecer insumos para procedimentos de análise de dados.
 
@@ -32,9 +32,9 @@ O sitema é "dockerizado" e está preparado para uma instalação local. Para a 
     PETRVS_DB_USER: "<o usuario do banco de dados do seu tenant, pode ser o root, para facilitar>"
     PETRVS_DB_PWD: "<a senha do usuário acima>"
 
-** IMPORTANTE: Após a instalação do sistema (subida dos contêineres), deve-se criar o banco de dados que o sistema irá utilizar, isto é feito via "flask db migrate", seguido por "flask db upgrade", no terminal (exec) do contêiner dm_petrvs. Problemas de migração costumam ser resolvidos simplesmente deletando as migrações antigas (pasta migrations/versions) e removendo a tabela alembic_version, no banco de dados, caso ela exista.
+**IMPORTANTE**: Após a instalação do sistema (subida dos contêineres), deve-se criar o banco de dados que o sistema irá utilizar, isto é feito via "flask db migrate", seguido por "flask db upgrade", no terminal (exec) do contêiner dm_petrvs. Problemas de migração costumam ser resolvidos simplesmente deletando as migrações antigas (pasta migrations/versions) e removendo a tabela alembic_version, no banco de dados, caso ela exista.
 
-** pgadmim
+**pgadmim**
 
 No pacote, é instalada uma instância do pgadmin, que é útil caso se deseje acessar diretamente as tabelas do sistema (dm_petrvs).
 
@@ -48,7 +48,7 @@ No nome do host, coloque o nome do contêiner onde está o banco do dm_petrvs: p
 O nome do banco é bd_dm_petrvs.
 Usuário e senha: postgres/postgres.
 
-** superset
+**superset**
 
 Incorporado também segue uma aplicação de BI: Superset.
 
