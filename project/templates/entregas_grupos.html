@@ -1,0 +1,247 @@
+{% extends "template_gov.html" %}
+{% block content %}
+
+<style>
+  .hidden-field-container {
+      display: none; /* Hides the element and removes it from layout flow */
+      /* or */
+      visibility: hidden; /* Hides the element but reserves its space in the layout */
+  }
+</style>
+
+<div class="col mb-5">
+  <div class="br-breadcrumb">
+    <ul class="crumb-list">
+      <li class="crumb home"><a class="br-button circle" href="{{url_for('core.inicio')}}"><span class="sr-only">Página inicial</span><i class="fa fa-home"></i></a></li>
+      <li class="crumb" data-active="active"><i class="icon fa fa-chevron-right"></i><span>Grupos de Entregas</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  
+  <h4>Grupos de Entregas</h4>
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+
+      <!-- Um botão para incluir grupo  -->
+
+      <button type="button" class="br-button secondary mr-3" data-bs-toggle='modal' data-bs-target='#inc_grupo_modal'>
+              <i class="fa fa-plus" aria-hidden="true"></i>Criar Grupo
+      </button> 
+
+        {# modal inclusão de grupo de entrega #}
+        <div class="modal fade" tabindex="-1" role="dialog" id="inc_grupo_modal">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Criando um Grupo</b>
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                {% macro render_field(field,obr) %}
+                  {% if obr == True %}
+                    <dt>{{ field.label(class="form-control-label") }}<span class="text-danger font-weight-bold">*</span>
+                  {% else %}
+                    <dt>{{ field.label(class="form-control-label") }}
+                  {% endif %}
+                  <dd>{{ field(**kwargs)|safe }}
+                  {% if field.errors %}
+                    <ul class=errors>
+                    {% for error in field.errors %}
+                      <li><span class="text-danger font-weight-bold">{{ error }}</span></li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                  </dd>
+                {% endmacro %}
+
+                <form class="form-group" method='POST'>
+
+                  {{ form_1.hidden_tag() }}
+
+                      <div class="row justify-content-md-center">
+                        <div class="col-8 text-center">
+                          {{ render_field(form_1.nome,class="form-control",obr=True) }}
+                        </div>  
+                        <div class="col-8 text-center">
+                          {{ render_field(form_1.desc,class="form-control",obr=True) }}
+                        </div> 
+                        <div class="col-8 text-center">
+                          {{ render_field(form_1.palavras_chave,class="form-control", placeholder="Separe as palavras com , (vírgula).",obr=True) }}
+                        </div> 
+                      </div>
+
+                    <br>
+
+                    <div class="form-group" align="center">
+                      {{ form_1.submit_1(class="br-button primary mr-3") }} <br> <span class="text-muted"> Atenção: campos marcados com * são obrigatórios.</span>
+                    </div>
+                  
+                </form>  
+
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+    <br>
+
+  {% for g in grupos %}
+
+    <div class="card card border-secondary">
+      
+      <div class="card-header">
+        <div class="row justify-content-between">
+          <div class="col-8">
+            Entrega: <b>{{g.nome}}</b>
+          </div>
+          <div class="col-4 text-right">
+
+            <!-- Um botão para alterar grupo  -->
+
+            <button type="button" class="br-button secondary mr-3" data-bs-toggle='modal' data-bs-target='#alt_grupo_modal{{grupos.index(g) + 1}}'>
+                    Alterar
+            </button> 
+
+            <abbr title="ATENÇÃO!! AO CLICAR NESTE BOTÃO, O GRUPO SERÁ DELETADO!">
+              <button type="button" class="br-button circle secondary mr-3" data-bs-toggle='modal' data-bs-target='#del_modal_{{grupos.index(g) + 1}}'>
+                <i class="fas fa-times" aria-hidden="true"></i></button>
+            </abbr>
+
+            <b>{{grupos.index(g) + 1}}</b>
+
+            {# modal para alterar grupo de entrega #}
+            
+            <div class="modal fade" tabindex="-1" role="dialog" id="alt_grupo_modal{{grupos.index(g) + 1}}">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Criando um Grupo</b>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                    {% macro render_field_2(field,obr) %}
+                      {% if obr == True %}
+                        <dt>{{ field.label(class="form-control-label") }}<span class="text-danger font-weight-bold">*</span>
+                      {% else %}
+                        <dt>{{ field.label(class="form-control-label") }}
+                      {% endif %}
+                      <dd>{{ field(**kwargs)|safe }}
+                      {% if field.errors %}
+                        <ul class=errors>
+                        {% for error in field.errors %}
+                          <li><span class="text-danger font-weight-bold">{{ error }}</span></li>
+                        {% endfor %}
+                        </ul>
+                      {% endif %}
+                      </dd>
+                    {% endmacro %}
+
+                    <form class="form-group" method='POST'>
+
+                      {{ form_2.hidden_tag() }}
+
+                        <div class="hidden-field-container"> 
+                          {{ form_2.id_grupo(value = g.id) }}
+                        </div>   
+
+                          <div class="row justify-content-md-center">
+                            <div class="col-8 text-center">
+                              {{ render_field_2(form_2.nome,class="form-control",obr=True, value = g.nome) }}
+                            </div>  
+                            <div class="col-8 text-center">
+                              {{ render_field_2(form_2.desc,class="form-control",obr=True, value = g.desc) }}
+                            </div> 
+                            <div class="col-8 text-center">
+                              {% set f = form_2.palavras_chave.process_data(g.palavras_chave) %}
+                              {{ render_field_2(form_2.palavras_chave,class="form-control",obr=True) }}
+                            </div> 
+                          </div>
+
+                        <br>
+
+                        <div class="form-group" align="center">
+                          {{ form_2.submit_2(class="br-button primary mr-3") }} <br> <span class="text-muted"> Atenção: campos marcados com * são obrigatórios.</span>
+                        </div>
+                      
+                    </form>  
+
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {# modal deleção de Grupo #}
+
+            <div class="modal" tabindex="-1" role="dialog" id="del_modal_{{grupos.index(g) + 1}}">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+
+                        <div class="p-3 mb-2 bg-danger text-white">
+                        <h4 class="modal-title">Deletar o grupo {{g.nome}}?</h4>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+
+                  </div>
+                  <div class="modal-body">
+                    <p>Deseja realmente remover o Grupo?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                    <form action="{{url_for('core.deleta_grupo',grupo_id=g.id)}}" method="post">
+                      <input class="btn btn-danger" type="submit" name="" value="Deletar">
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            Descrição: <b>{{g.desc}}</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="row justify-content-center">
+          <div class="col-10 text-center">
+            Palavras_chave: <b>{{ g.palavras_chave }} </b>
+          </div>
+        </div>
+
+      </div>
+
+             
+    </div>
+
+  {% endfor %}
+
+
+</div>
+{% endblock %}

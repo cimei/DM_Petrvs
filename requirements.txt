@@ -1,0 +1,11 @@
+flask
+flask-mail
+flask-login
+flask-sqlalchemy
+flask-wtf
+flask-migrate
+pip
+gunicorn
+PyMySQL
+psycopg2
+pandas

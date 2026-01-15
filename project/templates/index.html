@@ -1,0 +1,60 @@
+{% extends "template_gov.html" %}
+{% block content %}
+
+<div class="row mt-2">
+  <div class="d-flex justify-content-center  flex-wrap">
+
+    {% with 
+      icon="fa-archive", 
+      title="Carrega Stage Area",
+      description="Executa a carga das tabelas stage a partira do banco de dados do Petrvs.",
+      link=url_for("stage.carregaStage")
+    %}
+      {% include "card_menu.html" %}
+    {% endwith %}
+
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="d-flex justify-content-center  flex-wrap">
+
+    {% with 
+      icon="fa-database", 
+      title="Gera Dimensões",
+      description="Cria as tabelas de dimensão a partir da área de stage.",
+      link=url_for("dim_fat.gera_dimensoes")
+    %}
+      {% include "card_menu.html" %}
+    {% endwith %}
+
+  </div>
+</div>  
+
+<div class="row mt-2">
+  <div class="d-flex justify-content-center  flex-wrap">
+
+    {#
+    {% with 
+      icon="fa-snowflake", 
+      title="Gera ft_entregas",
+      description="Gera snowflake da fato ft_entregas.",
+      link=url_for("dim_fat.gera_fatos",ft="ft_entregas")
+    %}
+      {% include "card_menu.html" %}
+    {% endwith %}
+    #}
+
+    {% with 
+      icon="fa-snowflake", 
+      title="Gera ft_desempenho",
+      description="Gera snowflake da fato ft_desempenho.",
+      link=url_for("dim_fat.gera_fatos",ft="ft_desempenho")
+    %}
+      {% include "card_menu.html" %}
+    {% endwith %}
+
+  </div>
+</div> 
+
+{% endblock %}

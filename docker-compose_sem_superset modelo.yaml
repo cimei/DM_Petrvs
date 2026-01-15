@@ -1,0 +1,67 @@
+networks:
+  net:
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: bd_dm_petrvs
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_SERVER: localhost
+      POSTGRES_PORT: 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - net
+
+  web:
+    container_name: dm_petrvs
+    build: .
+    restart: always
+    ports:
+      - "5013:5013"
+    volumes:
+      - ./:/app
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_APP: "app.py"
+
+      DATA_INI: "2020-01-01"
+      DATA_FIM: "2030-12-31"
+
+      PETRVS_DB_PORT: "<a porta do banco de dados do seu tenant>"
+      PETRVS_DB_DATABASE: "<o nome do banco de dados do seu tenant>"
+      PETRVS_DB_SERVER: "<host.docker.internal deve ser usado na instalação local>"
+      PETRVS_DB_USER: "<o usuario do banco de dados do seu tenant, pode ser o root, para facilitar>"
+      PETRVS_DB_PWD: "<a senha do usuário acima>"
+
+      POSTGRES_DB: bd_dm_petrvs
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_SERVER: postgres
+      POSTGRES_PORT: 5432
+    depends_on:
+      - postgres
+    networks:
+      - net
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+    ports:
+      - "5000:80"
+    depends_on:
+      - postgres
+    networks:
+      - net
+
+volumes:
+  postgres_data:      
+

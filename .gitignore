@@ -1,0 +1,12 @@
+/build
+/dist
+/__pycache__
+/project/__pycache__
+/project/core/__pycache__
+/project/dim_fat/__pycache__
+/project/error_pages/__pycache__
+/project/stage/__pycache__
+/project/static/__pycache__
+/project/templates/__pycache__
+/docker-compose.yaml
+/docker-compose_sem_superset.yaml
