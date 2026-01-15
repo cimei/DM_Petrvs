@@ -34,6 +34,10 @@ O sitema é "dockerizado" e está preparado para uma instalação local. Para a 
 
 **IMPORTANTE**: Após a instalação do sistema (subida dos contêineres), deve-se criar o banco de dados que o sistema irá utilizar, isto é feito via "flask db migrate", seguido por "flask db upgrade", no terminal (exec) do contêiner dm_petrvs. Problemas de migração costumam ser resolvidos simplesmente deletando as migrações antigas (pasta migrations/versions) e removendo a tabela alembic_version, no banco de dados, caso ela exista.
 
+**Uso**
+
+O uso é simples: Gere a área de stage, na sequência, gere as dimensões e, por fim, gere o fato. Cada um tem um botão correspondente na tela inicial. Se quiser trabalhar com grupos de entregas, vá no menu lateral
+
 **pgadmim**
 
 No pacote, é instalada uma instância do pgadmin, que é útil caso se deseje acessar diretamente as tabelas do sistema (dm_petrvs).
