@@ -3,7 +3,9 @@
 **Inicialização**
 
 Faça o clone do repositório e, em sua máquina, ajuste o seu docker-compose e rode o 
+
     docker compose -f <o seu arquivo compose, baseado no modelo> up -d 
+
 Você vai precisar do docker desktop ativo e de um um banco do PGD Petrvs. 
 
 **dm_petrvs**
