@@ -1,5 +1,11 @@
 # Análise de Dados no PGD Petrvs
 
+**Inicialização**
+
+Faça o clone do repositório e, em sua máquina, ajuste o seu docker-compose e rode o 
+    docker compose -f <o seu arquivo compose, baseado no modelo> up -d 
+Você vai precisar do docker desktop ativo e de um um banco do PGD Petrvs. 
+
 **dm_petrvs**
 
 O dm_petrvs é uma ferramenta de consulta à base de dados do PGD Petrvs com a finalidade de fornecer insumos para procedimentos de análise de dados.
@@ -40,7 +46,7 @@ O uso é simples: Gere a área de stage, na sequência, gere as dimensões e, po
 
 **pgadmim**
 
-No pacote, é instalada uma instância do pgadmin, que é útil caso se deseje acessar diretamente as tabelas do sistema (dm_petrvs).
+No pacote, é instalada uma instância do pgadmin, que é útil para o acesso direto às tabelas do sistema (dm_petrvs).
 
 Para o seu uso, alguma configuração manual é necessária.
 
