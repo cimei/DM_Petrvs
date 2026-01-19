@@ -44,7 +44,9 @@ O sitema é "dockerizado" e está preparado para uma instalação local. Para a 
 
 **Uso**
 
-O uso é simples: Gere a área de stage, na sequência, gere as dimensões e, por fim, gere o fato. Cada um tem um botão correspondente na tela inicial. Se quiser trabalhar com grupos de entregas, vá no menu lateral
+O uso é simples: Gere a área de stage, na sequência, gere as dimensões e, por fim, gere o fato, sempre aguardando o término da fase anterior. Cada um tem um botão correspondente na tela inicial. Pode acompanhar a execução destas tarefas nos Logs do contêiner dm_petrvs (docker desktop) 
+
+Se quiser trabalhar com grupos de entregas, vá no menu lateral
 
 **pgadmim**
 
@@ -71,3 +73,12 @@ O Superset tem váarios dashbords de exemplo, o que dá uma ideia das suas poten
 Na opção "Dashboards" do Superset, no canto superior direito, há um ícone para importação de dashboards. Clique nele, selecione o arquivo desejado, caso solicite senha, informe a senha de acesso ao banco de dados (postgres). O Dasboard estará disponível para visualização.
 
 Caso deseje as consultas SQL utilizadas, pode importá-las também. Estas estão na pasta Consultas SQL.
+
+**Figuras**
+
+* O DM
+![alt text](ft_desempenho.png)
+
+* Telas no Superset
+![alt text](Pessoas_Modalidades.png)
+![alt text](ICA.png)
